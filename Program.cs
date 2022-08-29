@@ -1,15 +1,26 @@
 ﻿using Excel = Microsoft.Office.Interop.Excel;
+using System.Configuration;
+using System.Collections.Specialized;
+
+
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Beginning...");
 
-var clientId = "KZwbNOJRTQ2_bM_lOBIkiQ";
-var clientSecret = "6I4Dt3oYuVCrAv10l2OWailNs1D45ZVr";
-var accountId = "1LfeiJSCSdW0BCLXHeRrOA";
+//Insert your info into the App.config file.
+string? clientID = ConfigurationManager.AppSettings.Get("ClientID");
+string? clientSecret = ConfigurationManager.AppSettings.Get("ClientSecret"); 
+string? accountId = ConfigurationManager.AppSettings.Get("AccountID"); 
+string? userID = ConfigurationManager.AppSettings.Get("UserID");
+long? webinarID = (long)Convert.ToDouble(ConfigurationManager.AppSettings.Get("WebinarID"));
 
-var userID = "born4cheese@gmail.com";
-long webinarID = 0; //Insert Webinar ID here.
+string msg = "The application cannot proceed because the following fields in App.config are null\n\n";
+if (clientID is null) msg += "Client ID\n";
+if (clientSecret is null) msg += "Client Secret\n";
+if (accountId is null) msg += "Account ID\n";
+if (userID is null) msg += "User ID (Email address for account)\n";
+if (webinarID is null) msg += "Webinar ID";
 
-var connectionInfo = new ZoomNet.OAuthConnectionInfo(clientId, clientSecret, accountId,
+var connectionInfo = new ZoomNet.OAuthConnectionInfo(clientID, clientSecret, accountId,
     (_, newAccessToken) =>
     {
 
