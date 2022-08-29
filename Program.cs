@@ -1,7 +1,7 @@
 ﻿using Excel = Microsoft.Office.Interop.Excel;
 using System.Configuration;
 using System.Collections.Specialized;
-
+using System.Linq;
 
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Beginning...");
@@ -24,16 +24,17 @@ if (userID is null) { msg += "User ID (Email address for account)\n"; emptyField
 if (emptyField) ExitWithError(msg); 
 try
 {
-    webinarID = (long)Convert.ToDouble(ConfigurationManager.AppSettings.Get("WebinarID").Replace(" ", ""));
+    webinarID = (long)Convert.ToDouble(ConfigurationManager.AppSettings.Get("WebinarID")?.Replace(" ", ""));
 }
-catch (FormatException ex)
+catch (FormatException)
 {
     ExitWithError("The Webinar ID needs to be a number.");
 }
-catch (ArgumentNullException ex)
+catch (ArgumentNullException)
 {
     ExitWithError("The Webinar ID cannot be null.");
 }
+
 
 //Connect to zoom using ZoomNet
 var connectionInfo = new ZoomNet.OAuthConnectionInfo(clientID, clientSecret, accountId,
@@ -45,7 +46,6 @@ var connectionInfo = new ZoomNet.OAuthConnectionInfo(clientID, clientSecret, acc
 var zoomClient = new ZoomNet.ZoomClient(connectionInfo);
 
 //Getting Panelists from Zoom
-/*
 Task<ZoomNet.Models.Panelist[]> panelistTask = zoomClient.Webinars.GetPanelistsAsync(webinarID);
 try
 {
@@ -55,19 +55,22 @@ try
     {
         str += panelist.Email + ", ";
     }
-    Console.WriteLine(str);
+    Console.WriteLine($"From Zoom, fetching panelist {str}\n");
 }
 catch (ZoomNet.Utilities.ZoomException ex) { Console.WriteLine(ex.ToString()); Console.Read(); Environment.Exit(0); }
-*/
+
 
 //get member and guest lists from excel sheet.
 string exePath = AppDomain.CurrentDomain.BaseDirectory;
-if(File.Exists(exePath + @"Invitations_edit.xlsm"))
+string projPath = Path.GetFullPath(Path.Combine(exePath, @"..\..\..\"));
+if(File.Exists(projPath + @"Invitations_edit.xlsm"))
 {
-    Console.WriteLine("File found!");
-    Excel.Application xlApp = new Excel.Application();
-    Excel.Workbook workbook = xlApp.Workbooks.Open(exePath + @"Invitations_edit.xlsm");
-    Excel.Worksheet instructionSheet = xlApp.Worksheets[0];
+    Console.WriteLine("File found! Opening...");
+    Excel.Application xlApp = new Excel.Application() { Visible=true, WindowState=Excel.XlWindowState.xlMinimized};
+    
+    Excel.Workbook workbook = xlApp.Workbooks.Open(projPath + @"Invitations_edit.xlsm");
+    Excel.Worksheet instructionSheet = xlApp.Worksheets[1];
+    Console.WriteLine("File opened! Importing data from Excel...");
     foreach(Excel.Worksheet ws in workbook.Worksheets)
     {
         if(ws.Name == "Instructions")
@@ -77,11 +80,39 @@ if(File.Exists(exePath + @"Invitations_edit.xlsm"))
         }
     }
     //start cell end cell for range, add to array
-    string test = instructionSheet.Cells[2, 2].value;
+    List<(string Email, string FullName, string VirtualBackgroundId)> panelistsToDelete = new List<(string Email, string FullName, string VirtualBackgroundId)>();
+    List<(string Email, string FullName, string VirtualBackgroundId)> panelistsToInsert = new List<(string Email, string FullName, string VirtualBackgroundId)>();
+    for (int i = 2; i <= instructionSheet.UsedRange.Rows.Count; i++)
+    {
+        if (instructionSheet.Cells[i, 1].value is not null)
+        {
+            panelistsToDelete.Add((instructionSheet.Cells[i, 2].value, instructionSheet.Cells[i, 1].value, ""));
+        }
+        if(instructionSheet.Cells[i,3].value is not null)
+        {
+            panelistsToInsert.Add((instructionSheet.Cells[i, 4].value, instructionSheet.Cells[i, 3].value, ""));
+        }
+        Console.WriteLine($"Importing row {i}");
+    }
+    Console.WriteLine("Finished importing data from Excel! Beginning Sync...");
+
+    //Excel import success. Now we need to sync!
+    //Invitations.xlsm had done the work of making sure invitees are not on both the "delete" and "add" lists, so we can delete first then add!
+    //TODO AddPanelistsAsync does not try to insert a panelist who is already present. This means Invitations.xlsm can send over duplicate invitees!
+    await zoomClient.Webinars.AddPanelistsAsync(webinarID, panelistsToInsert);
+    Console.WriteLine($"{panelistsToInsert} have been inserted");
+    //no way to remove multiple panelists at once so im using a loop
+    foreach((string Email, string FullName, string VirtualBackgroundId) p in panelistsToDelete)
+    {
+        await zoomClient.Webinars.RemovePanelistAsync(webinarID, p.Email);
+        Console.WriteLine($"{p.Email} has been removed");
+    }
+    
+    
 }
 else
 {
-    
+    ExitWithError("You must add your data to import into the Invitations.xlsm worksheet before running this program");
 }
 
 
