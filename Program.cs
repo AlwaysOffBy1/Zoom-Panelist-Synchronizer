@@ -11,7 +11,8 @@ string? clientID = ConfigurationManager.AppSettings.Get("ClientID");
 string? clientSecret = ConfigurationManager.AppSettings.Get("ClientSecret"); 
 string? accountId = ConfigurationManager.AppSettings.Get("AccountID"); 
 string? userID = ConfigurationManager.AppSettings.Get("UserID");
-long? webinarID = (long)Convert.ToDouble(ConfigurationManager.AppSettings.Get("WebinarID"));
+string? webinarID = ConfigurationManager.AppSettings.Get("WebinarID");
+
 
 string msg = "The application cannot proceed because the following fields in App.config are null\n\n";
 if (clientID is null) msg += "Client ID\n";
@@ -20,6 +21,7 @@ if (accountId is null) msg += "Account ID\n";
 if (userID is null) msg += "User ID (Email address for account)\n";
 if (webinarID is null) msg += "Webinar ID";
 
+//Connect to zoom using ZoomNet
 var connectionInfo = new ZoomNet.OAuthConnectionInfo(clientID, clientSecret, accountId,
     (_, newAccessToken) =>
     {
