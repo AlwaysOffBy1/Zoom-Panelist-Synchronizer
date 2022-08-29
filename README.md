@@ -1,1 +1,1 @@
-# Zoom-Panelist-Synchronizer
+Zoom Panelist Synchronizer

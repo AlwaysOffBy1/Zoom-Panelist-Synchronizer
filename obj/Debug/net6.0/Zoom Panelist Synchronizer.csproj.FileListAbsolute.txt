@@ -1,0 +1,45 @@
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Zoom Panelist Synchronizer.exe
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Zoom Panelist Synchronizer.deps.json
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Zoom Panelist Synchronizer.runtimeconfig.json
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Zoom Panelist Synchronizer.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Zoom Panelist Synchronizer.pdb
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\HttpMultipartParser.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\jose-jwt.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Pathoschild.Http.Client.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\ZoomNet.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.csproj.AssemblyReference.cache
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.csproj.ResolveComReference.cache
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.AssemblyInfoInputs.cache
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.AssemblyInfo.cs
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.csproj.CoreCompileInputs.cache
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.csproj.CopyComplete
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\refint\Zoom Panelist Synchronizer.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.pdb
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\Zoom Panelist Synchronizer.genruntimeconfig.cache
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\obj\Debug\net6.0\ref\Zoom Panelist Synchronizer.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Zoom Panelist Synchronizer.dll.config
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\bryan\source\repos\Zoom Panelist Synchronizer\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
