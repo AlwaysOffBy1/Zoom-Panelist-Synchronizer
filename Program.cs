@@ -6,20 +6,34 @@ using System.Collections.Specialized;
 Console.WriteLine("Hello, World!");
 Console.WriteLine("Beginning...");
 
-//Insert your info into the App.config file.
+//Retrieve connection info from App.config
 string? clientID = ConfigurationManager.AppSettings.Get("ClientID");
 string? clientSecret = ConfigurationManager.AppSettings.Get("ClientSecret"); 
 string? accountId = ConfigurationManager.AppSettings.Get("AccountID"); 
 string? userID = ConfigurationManager.AppSettings.Get("UserID");
-string? webinarID = ConfigurationManager.AppSettings.Get("WebinarID");
+long webinarID = 0;
 
 
+//Check if connection info is null
+bool emptyField = false;
 string msg = "The application cannot proceed because the following fields in App.config are null\n\n";
-if (clientID is null) msg += "Client ID\n";
-if (clientSecret is null) msg += "Client Secret\n";
-if (accountId is null) msg += "Account ID\n";
-if (userID is null) msg += "User ID (Email address for account)\n";
-if (webinarID is null) msg += "Webinar ID";
+if (clientID is null) { msg += "Client ID\n"; emptyField = true; }
+if (clientSecret is null) { msg += "Client Secret\n"; emptyField = true; }
+if (accountId is null) { msg += "Account ID\n"; emptyField = true; }
+if (userID is null) { msg += "User ID (Email address for account)\n"; emptyField = true; }
+if (emptyField) ExitWithError(msg); 
+try
+{
+    webinarID = (long)Convert.ToDouble(ConfigurationManager.AppSettings.Get("WebinarID").Replace(" ", ""));
+}
+catch (FormatException ex)
+{
+    ExitWithError("The Webinar ID needs to be a number.");
+}
+catch (ArgumentNullException ex)
+{
+    ExitWithError("The Webinar ID cannot be null.");
+}
 
 //Connect to zoom using ZoomNet
 var connectionInfo = new ZoomNet.OAuthConnectionInfo(clientID, clientSecret, accountId,
@@ -63,7 +77,23 @@ if(File.Exists(exePath + @"Invitations_edit.xlsm"))
         }
     }
     //start cell end cell for range, add to array
+    string test = instructionSheet.Cells[2, 2].value;
 }
+else
+{
+    
+}
+
+
 
 Console.WriteLine("Goodbye, World!");
 Console.Read();
+
+
+void ExitWithError(string msg)
+{
+    Console.WriteLine(msg);
+    Console.WriteLine("Press any key to exit");
+    Console.Read();
+    Environment.Exit(0);
+}
