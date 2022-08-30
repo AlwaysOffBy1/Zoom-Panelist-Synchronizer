@@ -28,7 +28,7 @@ try
 }
 catch (FormatException)
 {
-    ExitWithError("The Webinar ID needs to be a number.");
+    ExitWithError($"The Webinar ID needs to be a number. \n {ConfigurationManager.AppSettings.Get("WebinarID")} was found instead.");
 }
 catch (ArgumentNullException)
 {
